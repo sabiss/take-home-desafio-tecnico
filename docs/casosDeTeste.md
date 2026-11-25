@@ -1,4 +1,4 @@
-### CT-01: Busca por palavra-chave com resultado
+### CT-01: Deve exibir vagas correspondentes ao buscar por um termo existente
 
 **Objetivo:** Esse caso de teste valida o fluxo correto de buscar uma vaga por uma palavra-chave e obter como resultado uma vaga existente.
 
@@ -7,7 +7,7 @@
 | # | Passo | Resultado Esperado |
 | :--- | :--- | :--- |
 | 1 | Clicar no input de pesquisa | O input de pesquisa deve ficar focado |
-| 2 | Digitar a palavra chave "testes" | O texto digitado deve aparecer no campo de pesquisa |
+| 2 | Digitar a palavra chave "estágio" | O texto digitado deve aparecer no campo de pesquisa |
 | 3 | Clicar no botão "Buscar"| A listagem deve ser atualizada exibindo pelo menos uma vaga que contenha a palavra-chave "testes" |
 
 ### CT-02: Busca por palavra-chave sem resultado
