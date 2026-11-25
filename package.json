@@ -1,0 +1,22 @@
+{
+  "name": "esig-desafio-tecnico",
+  "version": "1.0.0",
+  "description": "desafio técnico de automação em Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabiss/take-home-desafio-tecnico.git"
+  },
+  "author": "Sabrina Bezerra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sabiss/take-home-desafio-tecnico/issues"
+  },
+  "homepage": "https://github.com/sabiss/take-home-desafio-tecnico#readme",
+  "devDependencies": {
+    "cypress": "^16.3.0"
+  }
+}
