@@ -1,10 +1,12 @@
 class PortalVagasPage {
     elements = {
-        inputPesquisa: () => cy.get('input[placeholder="Busque pelo título do processo seletivo ou pelo cargo..."]')
-            .filter(':visible')
-            .first(),
-        botaoBuscar: () => cy.contains('button', 'Buscar'),
+        inputPesquisa: () => cy.get('[data-cy="campo-palavra-chave-header-input"]'),
+        botaoBuscar: () => cy.get('[data-cy="botao-buscar-header"]'),
         containerVagas: () => cy.get('[data-cy="instituicao-lista-vagas"]'),
+        totalVagasEncontradas: () => cy.get('[data-cy="instituicao-total-vagas-texto"]'),
+        tituloNenhumaVagaEncontrada: () => cy.get('[data-cy="instituicao-sem-vagas-filtro-titulo"]'),
+        descricaoNenhumaVagaEncontrada: () => cy.get('[data-cy="instituicao-sem-vagas-filtro-descricao"]'),
+        botaoVerTodasVagas: () => cy.get('[data-cy="botao-ver-todas-vagas"]'),
   };
 
   buscarPorPalavraChave(palavraChave) {
