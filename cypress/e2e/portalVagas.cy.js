@@ -15,12 +15,10 @@ describe('Testes do Portal de Vagas', () => {
   it('CT-02: Deve exibir nenhuma vaga ao buscar por um termo inexistente', () => {
     PortalVagasPage.buscarPorPalavraChave('termoInexistente');
 
-    cy.contains('0 vagas encontradas').should('be.visible');
-    cy.contains('Nenhuma vaga encontrada').should('be.visible');
-    cy.contains('Não encontramos vagas que correspondam aos filtros aplicados. Tente ajustar os critérios de busca ou remover alguns filtros.').should('be.visible');
-    cy.contains('button', 'Ver todas as vagas')
-      .should('be.visible')
-      .and('be.enabled')
+    PortalVagasPage.elements.totalVagasEncontradas().should('be.visible');
+    PortalVagasPage.elements.tituloNenhumaVagaEncontrada().should('be.visible');
+    PortalVagasPage.elements.descricaoNenhumaVagaEncontrada().should('be.visible');
+    PortalVagasPage.elements.botaoVerTodasVagas().should('be.visible').and('be.enabled');
 
   })
 })
