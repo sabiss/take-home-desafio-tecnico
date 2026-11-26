@@ -12,34 +12,43 @@ class FormsIncricaoVaga {
         inputCidade: () => cy.get('[data-cy="campo-cidade-input"]'),
         inputEscolaridade: () => cy.get('[data-cy="campo-escolaridade-input"]'),
         inputCurso: () => cy.get('[data-cy="campo-curso-input"]'),
-        inputInstituicao: () => cy.get('[data-cy="campo-instituicao-input"]'),
         inputLinkedin: () => cy.get('[data-cy="campo-linkedin-input"]'),
         inputComoChegouAteAVaga: () => cy.get('[data-cy="campo-como-chegou-input"]'),
         inputPretensaoSalarial: () => cy.get('[data-cy="campo-pretensao-salarial-input"]'),
         inputCurriculo: () => cy.get('[data-cy="campo-curriculo-input"]'),
-        inputFoto: () => cy.get('[data-cy="campo-foto-input"]'),
+        inputFoto: () => cy.get('[data-cy="campo-foto-perfil-input"]'),
         botaoAvancar: () => cy.get('[data-cy="botao-vaga-inscricao-avancar"]'),
-        alertaCamposInvalidos: () => cy.contains(/campos obrigat[oó]rios inv[aá]lidos ou n[aã]o preenchidos/i),
-        avisoEmailInvalido: () => cy.contains(/e-?mail.*inv[aá]lid|inv[aá]lid.*e-?mail/i),
+        avisoEmailInvalido: () => cy.get('[data-cy=campo-email-erro]'),
         alertDeFalhaEmCamposObrigatorios: () => cy.get('[data-cy="vaga-inscricao-dados-erro-geral-container"]'),
     }
 
-    preencherFormularioInscricaoVaga(dados) {
-        this.elements.inputNome().type(dados.nome);
-        this.elements.inputEmail().type(dados.email);
-        this.elements.inputTelefone().type(dados.telefone);
-        this.elements.inputSexo().select(dados.sexo);
-        this.elements.inputCEP().type(dados.cep);
-        this.elements.inputNumero().type(dados.numero);
-        this.elements.inputComplemento().type(dados.complemento);
-        this.elements.inputEscolaridade().select(dados.escolaridade);
-        this.elements.inputCurso().type(dados.curso);
-        this.elements.inputInstituicao().type(dados.instituicao);
-        this.elements.inputLinkedin().type(dados.linkedin);
-        this.elements.inputComoChegouAteAVaga().select(dados.comoChegouAteAVaga);
-        this.elements.inputPretensaoSalarial().type(dados.pretensaoSalarial);
-        this.elements.inputCurriculo().attachFile(dados.curriculo);
-        this.elements.inputFoto().attachFile(dados.foto);
+    preencherFormularioInscricaoVaga(candidato) {
+        this.elements.inputNome().type(candidato.nome);
+        this.elements.inputEmail().type(candidato.email);
+        this.elements.inputTelefone().type(candidato.telefone);
+        this.elements.inputSexo().select(candidato.sexo);
+        this.elements.inputNumero().type(candidato.numero);
+        this.elements.inputEscolaridade().select(candidato.escolaridade);
+        this.elements.inputCurso().type(candidato.curso);
+        this.elements.inputLinkedin().type(candidato.linkedin);
+        this.elements.inputComoChegouAteAVaga().select(candidato.comoChegouAteAVaga);
+        this.elements.inputPretensaoSalarial().type(candidato.pretensaoSalarial);
+    }
+
+    preencherCEP(cep){
+        this.elements.inputCEP().type(cep);
+    }
+
+    preencherEmail(email){
+        this.elements.inputEmail().type(email);
+    }
+
+    anexarCurriculo(nomeArquivo) {
+        this.elements.inputCurriculo().selectFile(`cypress/fixtures/${nomeArquivo}`, { force: true });
+    }
+
+    anexarFotoPerfil(nomeArquivo){
+        this.elements.inputFoto().selectFile(`cypress/fixtures/${nomeArquivo}`, { force: true });
     }
 }
 
