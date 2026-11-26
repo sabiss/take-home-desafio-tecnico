@@ -33,6 +33,15 @@ class PortalVagasPage {
 
     this.elements.botaoBuscar().click();
   }
+
+  acessarInscricaoDaVaga(){
+    this.elements.containerVagas()
+      .contains('inscreva-se', { matchCase: false })
+      .click();
+  }
+  seInscreverNaVaga(){
+    this.elements.botaoQueroMeInscrever().click();
+  }
 }
 
 export default new PortalVagasPage();
