@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sabiss/take-home-desafio-tecnico#readme",
   "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
     "cypress": "^16.3.0"
   }
 }
