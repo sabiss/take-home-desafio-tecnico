@@ -21,4 +21,11 @@ describe('Testes do Portal de Vagas', () => {
     PortalVagasPage.elements.botaoVerTodasVagas().should('be.visible').and('be.enabled');
 
   })
+
+  it('CT-03: Deve exibir vagas de vínculo CLT', () => {
+    PortalVagasPage.buscarVagasPorVinculo('CLT');
+    PortalVagasPage.elements.containerVagas()
+      .contains('CLT', { matchCase: false })
+      .should('be.visible');
+  })
 })
