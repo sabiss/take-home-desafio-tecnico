@@ -8,6 +8,7 @@ class PortalVagasPage {
         descricaoNenhumaVagaEncontrada: () => cy.get('[data-cy="instituicao-sem-vagas-filtro-descricao"]'),
         botaoVerTodasVagas: () => cy.get('[data-cy="botao-ver-todas-vagas"]'),
         inputVinculo: () => cy.get('[data-cy="campo-vinculo-header-botao"]'),
+        botaoQueroMeInscrever: () => cy.get('[data-cy="botao-vaga-inscrever"]'),
 
   };
 
