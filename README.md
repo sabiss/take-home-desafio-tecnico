@@ -163,7 +163,8 @@ Os Page Objects encapsulam seletores e ações das páginas. A factory centraliz
 
 ### O que foi mais difícil
 
-O principal desafio foi a dependência do Cloudflare Turnstile em um portal remoto. Por mais que eu tenha pesquisado bastante sobre como ultrapassar esse captcha com o cypress, não obtive sucesso. Uma resposta HTTP bem-sucedida simulada no Cypress não cria, por si só, uma inscrição persistida ou um identificador DISC válido. Para testar o fluxo completo com estabilidade, é necessário usar chaves oficiais de teste em um ambiente controlado.
+O principal desafio foi a dependência do Cloudflare Turnstile em um portal remoto. Por mais que eu tenha pesquisado bastante sobre como ultrapassar esse captcha com o cypress, não obtive sucesso. Tentei aguardar o captcha se auto marcar e liberar o botão, mas, no cypress, ele não se auto marca com o tempo igual no navegador normal. Tentei simular respostas do do captchar, mas também não obtive sucesso
+
 ### O que foi aprendido
 
 - Como criar um teste com Cypress
