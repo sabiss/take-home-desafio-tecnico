@@ -1,5 +1,5 @@
 import PortalVagasPage from '../pages/PortalVagasPage';
-import FormsIncricaoVaga from '../pages/FormsIncricaoVaga';
+import FormsIncricaoVaga from '../pages/FormsIncricaoVagaPage';
 import { gerarCandidato } from '../support/factories/candidatoFactory';
 
 describe('Testes do Portal de Vagas', () => {
@@ -50,5 +50,5 @@ describe('Testes do Portal de Vagas', () => {
     cy.url().should('eq', 'https://vagas.quarkrh.com.br/esig/inscricao/73514786');
     FormsIncricaoVaga.elements.alertDeFalhaEmCamposObrigatorios().should('be.visible');
     FormsIncricaoVaga.elements.avisoEmailInvalido().should('be.visible');
-});
+  });
 })
