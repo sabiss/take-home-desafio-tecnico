@@ -17,6 +17,7 @@ class FormsIncricaoVaga {
         inputPretensaoSalarial: () => cy.get('[data-cy="campo-pretensao-salarial-input"]'),
         inputCurriculo: () => cy.get('[data-cy="campo-curriculo-input"]'),
         inputFoto: () => cy.get('[data-cy="campo-foto-perfil-input"]'),
+        inputResumoDoCandidato: () => cy.get('[data-cy="campo-resumo-input"]'),
         botaoAvancar: () => cy.get('[data-cy="botao-vaga-inscricao-avancar"]'),
         avisoEmailInvalido: () => cy.get('[data-cy="campo-email-erro"]'),
         alertDeFalhaEmCamposObrigatorios: () => cy.get('[data-cy="vaga-inscricao-dados-erro-geral-container"]'),
@@ -34,7 +35,8 @@ class FormsIncricaoVaga {
         this.elements.inputComoChegouAteAVaga().clear().select(candidato.comoChegouAteAVaga);
         this.elements.inputPretensaoSalarial().clear().type(candidato.pretensaoSalarial);
         this.elements.inputEmail().clear().type(candidato.email);
-        this.elements.inputCEP().clear().type(cep);
+        this.elements.inputCEP().clear().type(candidato.cep);
+        this.elements.inputResumoDoCandidato().clear().type(candidato.resumo);
     }
 
     anexarCurriculo(nomeArquivo) {
