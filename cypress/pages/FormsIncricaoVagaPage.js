@@ -21,6 +21,7 @@ class FormsIncricaoVaga {
         botaoAvancar: () => cy.get('[data-cy="botao-vaga-inscricao-avancar"]'),
         avisoEmailInvalido: () => cy.get('[data-cy="campo-email-erro"]'),
         alertDeFalhaEmCamposObrigatorios: () => cy.get('[data-cy="vaga-inscricao-dados-erro-geral-container"]'),
+        avisoCurriculoMaior5mb: () => cy.get('[data-cy="campo-curriculo-erro"]'),
     }
 
     preencherFormularioInscricaoVaga(candidato) {
