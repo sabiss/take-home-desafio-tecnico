@@ -45,7 +45,7 @@ describe('Testes do Portal de Vagas', () => {
     FormsIncricaoVaga.preencherFormularioInscricaoVaga(candidato);
     FormsIncricaoVaga.anexarCurriculo(candidato.curriculo);
     FormsIncricaoVaga.anexarFotoPerfil(candidato.foto);
-    FormsIncricaoVaga.elements.botaoAvancar().click();
+    FormsIncricaoVaga.avancarInscricao();
 
     cy.url().should('eq', 'https://vagas.quarkrh.com.br/esig/inscricao/73514786');
     FormsIncricaoVaga.elements.alertDeFalhaEmCamposObrigatorios().should('be.visible');
@@ -63,7 +63,7 @@ describe('Testes do Portal de Vagas', () => {
     FormsIncricaoVaga.anexarCurriculo(candidato.curriculo);
     FormsIncricaoVaga.anexarFotoPerfil(candidato.foto);
     FormsIncricaoVaga.avancarInscricao();
-    FormsIncricaoVaga.avancarInscricao();
+    FormsIncricaoVaga.avancarInscricao();//a inscrição so avança e mostra o erro, após dois clique no avançar. O primeiro clique, aparentemente, é pra upar os arquivos e o seguinte clique é que faz a validação
 
     QuestionarioPage.elements.tituloQuestionario().should('be.visible');
 
@@ -78,5 +78,25 @@ describe('Testes do Portal de Vagas', () => {
     TesteDISCPage.responderTesteDISC();
     TesteDISCPage.finalizarTesteDISC();
     */
+  });
+
+  it('CT-BÔNUS: Deve bloquear o avanço na inscrição por causa do currículo de mais de 5mb', () => {
+    const candidato = gerarCandidato({
+      curriculo: 'cypress/fixtures/curriculo_mais_5mb.pdf',
+    });
+
+    PortalVagasPage.buscarPorPalavraChave('Estágio em Testes');
+    PortalVagasPage.acessarInscricaoDaVaga('Estágio em Testes');
+    PortalVagasPage.seInscreverNaVaga();
+
+    FormsIncricaoVaga.preencherFormularioInscricaoVaga(candidato);
+    FormsIncricaoVaga.anexarCurriculo(candidato.curriculo);
+    FormsIncricaoVaga.anexarFotoPerfil(candidato.foto);
+    FormsIncricaoVaga.avancarInscricao();
+    FormsIncricaoVaga.avancarInscricao();//a inscrição so avança e mostra o erro, após dois clique no avançar. O primeiro clique, aparentemente, é pra upar os arquivos e o seguinte clique é que faz a validação
+
+
+    cy.url().should('eq', 'https://vagas.quarkrh.com.br/esig/inscricao/73514786');
+    FormsIncricaoVaga.elements.avisoCurriculoMaior5mb().should('be.visible');
   });
 })
