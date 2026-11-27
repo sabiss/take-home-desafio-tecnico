@@ -41,7 +41,6 @@ describe('Testes do Portal de Vagas', () => {
     PortalVagasPage.seInscreverNaVaga();
 
     FormsIncricaoVaga.preencherFormularioInscricaoVaga(candidato);
-    FormsIncricaoVaga.preencherCEP(candidato.cep);
     FormsIncricaoVaga.anexarCurriculo(candidato.curriculo);
     FormsIncricaoVaga.anexarFotoPerfil(candidato.foto);
     FormsIncricaoVaga.elements.botaoAvancar().click();

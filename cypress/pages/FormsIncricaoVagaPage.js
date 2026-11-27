@@ -34,9 +34,6 @@ class FormsIncricaoVaga {
         this.elements.inputComoChegouAteAVaga().clear().select(candidato.comoChegouAteAVaga);
         this.elements.inputPretensaoSalarial().clear().type(candidato.pretensaoSalarial);
         this.elements.inputEmail().clear().type(candidato.email);
-    }
-
-    preencherCEP(cep){
         this.elements.inputCEP().clear().type(cep);
     }
 
