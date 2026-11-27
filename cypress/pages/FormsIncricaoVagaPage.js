@@ -35,7 +35,6 @@ class FormsIncricaoVaga {
         this.elements.inputLinkedin().clear().type(candidato.linkedin);
         this.elements.inputComoChegouAteAVaga().select(candidato.comoChegouAteAVaga);
         this.elements.inputPretensaoSalarial().clear().type(candidato.pretensaoSalarial);
-        this.elements.inputEmail().clear().type(candidato.email);
         this.elements.inputCEP().clear().type(candidato.cep);
         this.elements.inputResumoDoCandidato().clear().type(candidato.resumo);
     }
