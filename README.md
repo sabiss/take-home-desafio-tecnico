@@ -176,3 +176,4 @@ O principal desafio foi a dependência do Cloudflare Turnstile em um portal remo
 - O preenchimento do endereço pode ser iniciado pelo CEP.
 - O fluxo de inscrição reúne várias etapas, incluindo questionário, Turnstile e, conforme a inscrição, o teste DISC.
 - O teste DISC é bem interessante
+- No momento após anexar os arquivos, seria interessante que, com apenas um clique no "avnçar", já fazer o upload dos arquivos e realmente avançar na aplicação, não necessitando assim de 2 cliques
