@@ -125,7 +125,7 @@ O `baseUrl` configurado em `cypress.config.js` aponta para `https://vagas.quarkr
 
 **Estado da automação:** o CT-05 atualmente preenche o formulário e o questionário, mas para no bloqueio do Cloudflare Turnstile. As chamadas de conclusão da inscrição e do teste DISC estão comentadas em `cypress/e2e/portalVagas.cy.js`; portanto, o fluxo completo ainda não está validado automaticamente.
 
-### CT-BÔNUS: Deve bloquear o avanço na inscrição por causa do currículo de mais de 5mb
+### CT-BÔNUS-1: Deve bloquear o avanço na inscrição por causa do currículo de mais de 5mb
 **Objetivo:** Esse caso de teste valida o bloqueio do avanço na incrição do candidato que possui um currícul com mais de 5mb
 
 **Pré-condição:** Estar na página inicial do portal de vagas ESIG GROUP.
@@ -142,9 +142,26 @@ O `baseUrl` configurado em `cypress.config.js` aponta para `https://vagas.quarkr
 
 **Cobertura automatizada atual:** anexa `cypress/fixtures/curriculo_mais_5mb.pdf`, tenta avançar e verifica que o elemento de erro do currículo está visível. Não verifica o texto exato do aviso.
 
+### CT-BÔNUS-2: Deve rejeitar um arquivo JPG anexado como currículo
+**Objetivo:** Validar que o formulário rejeita um arquivo JPG quando ele é anexado no campo de currículo, que aceita apenas arquivos PDF.
+
+**Pré-condição:** Estar na página inicial do portal de vagas ESIG GROUP e ter acesso ao arquivo `cypress/fixtures/foto_perfil.jpg`.
+
+| # | Passo | Resultado Esperado |
+| :--- | :--- | :--- |
+| 1 | Pesquisar por "Estágio em Testes" e clicar em "Buscar" | A listagem deve apresentar pelo menos uma vaga de estágio em testes |
+| 2 | Clicar em "Inscreva-se" na vaga encontrada | Deve ser exibida a tela de informações da vaga |
+| 3 | Clicar no botão "Quero me inscrever" | Deve ser exibido o formulário de inscrição |
+| 4 | Preencher os campos obrigatórios do formulário | Os campos obrigatórios devem estar preenchidos |
+| 5 | Anexar `foto_perfil.jpg` no campo de currículo | O JPG deve ser selecionado como arquivo de currículo |
+| 6 | Anexar `foto_perfil.jpg` no campo de foto de perfil | O arquivo deve ser selecionado como foto de perfil |
+| 7 | Clicar em "Avançar" | A inscrição deve permanecer no formulário e exibir o aviso "Tipo de arquivo não permitido. Use apenas PDF." |
+
+**Cobertura automatizada atual:** confirma que `foto_perfil.jpg` foi anexado no campo de currículo, tenta avançar e verifica que o aviso de erro do currículo está visível.
+
 ## Organização da automação
 
-- `cypress/e2e/portalVagas.cy.js`: cenários E2E CT-01 a CT-05 e CT-BÔNUS.
+- `cypress/e2e/portalVagas.cy.js`: cenários E2E CT-01 a CT-06 e CT-BÔNUS-1 e CT-BÔNUS-2.
 - `cypress/pages/`: Page Objects para busca, inscrição, questionário e teste DISC.
 - `cypress/support/factories/candidatoFactory.js`: geração de dados fictícios de candidato com Faker.
 - `cypress/fixtures/`: arquivos de teste usados como currículo e foto.
@@ -154,7 +171,7 @@ Os Page Objects encapsulam seletores e ações das páginas. A factory centraliz
 ## O que foi feito
 
 - Estruturação da suíte Cypress para busca de vagas, filtros e validação de e-mail.
-- Inclusão do cenário bônus de bloqueio de currículo acima de 5 MB.
+- Inclusão de cenários bônus para bloqueio de currículo acima de 5 MB e rejeição de JPG como currículo.
 - Organização das interações com a aplicação em Page Objects Model.
 - Geração de dados de candidato com Faker e uso de arquivos de fixture.
 - Especificação do fluxo de inscrição e DISC no CT-05. A automação desse fluxo ainda está pendente por causa do Turnstile e da necessidade de respostas de API compatíveis com uma inscrição válida.

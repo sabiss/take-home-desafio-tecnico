@@ -82,7 +82,7 @@ describe('Testes do Portal de Vagas', () => {
     */
   });
 
-  it('CT-BÔNUS: Deve bloquear o avanço na inscrição por causa do currículo de mais de 5mb', () => {
+  it('CT-BÔNUS-1: Deve bloquear o avanço na inscrição por causa do currículo de mais de 5mb', () => {
     const candidato = gerarCandidato({
       curriculo: 'cypress/fixtures/curriculo_mais_5mb.pdf',
     });
@@ -99,6 +99,30 @@ describe('Testes do Portal de Vagas', () => {
 
 
     cy.url().should('eq', 'https://vagas.quarkrh.com.br/esig/inscricao/73514786');
-    FormsIncricaoVaga.elements.avisoCurriculoMaior5mb().should('be.visible');
+    FormsIncricaoVaga.elements.avisoErroCurriculo().should('be.visible');
+  });
+
+  it('CT-BÔNUS-2: Deve rejeitar um arquivo JPG anexado como currículo', () => {
+    const candidato = gerarCandidato({
+      curriculo: 'cypress/fixtures/foto_perfil.jpg',
+    });
+
+    PortalVagasPage.buscarPorPalavraChave('Estágio em Testes');
+    PortalVagasPage.acessarInscricaoDaVaga('Estágio em Testes');
+    PortalVagasPage.seInscreverNaVaga();
+
+    FormsIncricaoVaga.preencherFormularioInscricaoVaga(candidato);
+    FormsIncricaoVaga.anexarCurriculo(candidato.curriculo);
+    //confirma que o arquivo anexado é realmente o arquivo de foto
+    FormsIncricaoVaga.elements.inputCurriculo().should(($input) => {
+      expect($input[0].files[0].name).to.equal('foto_perfil.jpg');
+    });
+    FormsIncricaoVaga.anexarFotoPerfil(candidato.foto);
+    FormsIncricaoVaga.avancarInscricao();
+    FormsIncricaoVaga.avancarInscricao();
+
+    cy.url().should('eq', 'https://vagas.quarkrh.com.br/esig/inscricao/73514786');
+    FormsIncricaoVaga.elements.avisoErroCurriculo()
+      .should('be.visible')
   });
 })
