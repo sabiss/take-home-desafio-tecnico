@@ -16,6 +16,9 @@ export function gerarCandidato(sobrescrever = {}) {
     linkedin: 'https://www.linkedin.com/in/candidato-teste',
     comoChegouAteAVaga: 'Rede Social',
     pretensaoSalarial: '2000',
+    curriculo: 'cypress/fixtures/curriculo.pdf',
+    foto: 'cypress/fixtures/foto_perfil.jpg',
+    resumo: faker.lorem.paragraph(),
     ...sobrescrever, //em JS, s euma chave aparece duas vezes no mesmo objeto, o valor que vinher por ultimo será o em vigor
   };
 }
