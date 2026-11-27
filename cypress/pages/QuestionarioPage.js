@@ -1,14 +1,15 @@
-export class QuestionarioPage {
+class QuestionarioPage {
     elements = {
-        tituloQuestionario: () => cy.contains('Questionário', { matchCase: false }),
-        perfilAnalitico: () => cy.get('[data-cy="campo-questao-texto-input-0-0-0"]'),
-        perfilControlador: () => cy.get('[data-cy="campo-questao-texto-input-0-0-1"]'),
-        perfilRelacional: () => cy.get('[data-cy="campo-questao-texto-input-0-0-2"]'),
-        perfilExperimental: () => cy.get('[data-cy="campo-questao-texto-input-0-0-3"]'),
+        tituloQuestionario: () => cy.get('[data-cy="vaga-inscricao-questionario-titulo"]'),
+        perfilAnalitico: () => cy.get('[data-cy="campo-questao-checkbox-input-0-0-0"]'),
+        perfilControlador: () => cy.get('[data-cy="campo-questao-checkbox-input-0-0-1"]'),
+        perfilRelacional: () => cy.get('[data-cy="campo-questao-checkbox-input-0-0-2"]'),
+        perfilExperimental: () => cy.get('[data-cy="campo-questao-checkbox-input-0-0-3"]'),
         inputPretensaoSalarial: () => cy.get('[data-cy="campo-questao-texto-input-0-1"]'),
         inputCategoriaPCD: () => cy.get('[data-cy="campo-questao-texto-input-0-2"]'),
         inputMotivoFazerParteTime: () => cy.get('[data-cy="campo-questao-textarea-input-0-3"]'),
         inputPeriodoAtualDoCurso: () => cy.get('[data-cy="campo-questao-texto-input-0-4"]'),
+        inputAnoConclusaoCurso: () => cy.get('[data-cy="campo-questao-texto-input-0-5"]'),
         checkboxDisponibilidadeTrabalharPelaManha: () => cy.get('[data-cy="campo-questao-checkbox-input-0-6-0"]'),
         checkboxDisponibilidadeTrabalharTarde: () => cy.get('[data-cy="campo-questao-checkbox-input-0-6-1"]'),
         checkboxSimEstouEnvolvidoEmProjetos: () => cy.get('[data-cy="campo-questao-checkbox-input-0-7-0"]'),
@@ -16,10 +17,10 @@ export class QuestionarioPage {
         checkboxSimJaParticipeiDosProcessosSeletivosDaEmpresa: () => cy.get('[data-cy="campo-questao-checkbox-input-0-8-0"]'),
         checkboxNuncaParticipeiDosProcessosSeletivosDaEmpresa: () => cy.get('[data-cy="campo-questao-checkbox-input-0-8-1"]'),
         checkboxConcorcoComPoliticaDePrivacidade: () => cy.get('[data-cy="campo-questao-checkbox-input-0-9-0"]'),
-        inputJaTrabalhouComIaOuUsa: () => cy.get('[data-cy="campo-questao-texto-input-0-10"]'),
-        inputOqueEstaEstudandoNoMomento: () => cy.get('[data-cy="campo-questao-texto-input-0-11"]'),
-        inputComoSeATualiza: () => cy.get('[data-cy="campo-questao-texto-input-0-12"]'),
-        inputQuaisMetodologiasAgeisJaUtilizou: () => cy.get('[data-cy="campo-questao-texto-input-0-13"]'),
+        inputJaTrabalhouComIaOuUsa: () => cy.get('[data-cy="campo-questao-textarea-input-0-10"]'),
+        inputOqueEstaEstudandoNoMomento: () => cy.get('[data-cy="campo-questao-textarea-input-0-11"]'),
+        inputComoSeATualiza: () => cy.get('[data-cy="campo-questao-textarea-input-0-12"]'),
+        inputQuaisMetodologiasAgeisJaUtilizou: () => cy.get('[data-cy="campo-questao-textarea-input-0-13"]'),
         inputDisponibilidadeParaPresencial: () => cy.get('[data-cy="campo-questao-texto-input-0-14"]'),
         botaoAvancarInscricao: () => cy.get('[data-cy="botao-vaga-inscricao-avancar"]'),
     }
@@ -31,6 +32,7 @@ export class QuestionarioPage {
         this.elements.inputCategoriaPCD().clear().type('Não se aplica');
         this.elements.inputMotivoFazerParteTime().clear().type('Tenho interesse em aprender e contribuir com a equipe.');
         this.elements.inputPeriodoAtualDoCurso().clear().type('3º período');
+        this.elements.inputAnoConclusaoCurso().clear().type('2029');
         this.elements.checkboxDisponibilidadeTrabalharPelaManha().check();
         this.elements.checkboxDisponibilidadeTrabalharTarde().check();
         this.elements.checkboxNaoEstouEnvolvidoEmProjetos().check();''
@@ -49,13 +51,15 @@ export class QuestionarioPage {
 
     aguardarBotaoAvancarHabilitado(tempoMaximo = 50000) {
         this.elements
-        .botaoAvancar({ timeout: tempoMaximo })
+        .botaoAvancarInscricao({ timeout: tempoMaximo })
         .scrollIntoView()
         .should('be.visible')
         .and('be.enabled');
     }
     concluirInscricao() {
         this.aguardarBotaoAvancarHabilitado();
-        this.elements.botaoAvancar().click();
+        this.elements.botaoAvancarInscricao().click();//o botão de concluir tem o mesmo data-cy que o de avançar
     }
 }
+
+export default new QuestionarioPage();
