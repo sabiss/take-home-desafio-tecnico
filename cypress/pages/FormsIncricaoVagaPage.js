@@ -17,11 +17,12 @@ class FormsIncricaoVaga {
         inputPretensaoSalarial: () => cy.get('[data-cy="campo-pretensao-salarial-input"]'),
         inputCurriculo: () => cy.get('[data-cy="campo-curriculo-input"]'),
         inputFoto: () => cy.get('[data-cy="campo-foto-perfil-input"]'),
+        nomeArquivoCurriculo: () => cy.get('[data-cy="campo-curriculo-arquivo-nome"]'),
         inputResumoDoCandidato: () => cy.get('[data-cy="campo-resumo-input"]'),
         botaoAvancar: () => cy.get('[data-cy="botao-vaga-inscricao-avancar"]'),
         avisoEmailInvalido: () => cy.get('[data-cy="campo-email-erro"]'),
         alertDeFalhaEmCamposObrigatorios: () => cy.get('[data-cy="vaga-inscricao-dados-erro-geral-container"]'),
-        avisoCurriculoMaior5mb: () => cy.get('[data-cy="campo-curriculo-erro"]'),
+        avisoErroCurriculo: () => cy.get('[data-cy="campo-curriculo-erro"]'),
     }
 
     preencherFormularioInscricaoVaga(candidato) {
