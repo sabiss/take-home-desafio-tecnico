@@ -49,15 +49,10 @@ class QuestionarioPage {
         this.elements.botaoAvancarInscricao().click();
     }   
 
-    aguardarBotaoAvancarHabilitado(tempoMaximo = 50000) {
-        this.elements
-        .botaoAvancarInscricao({ timeout: tempoMaximo })
-        .scrollIntoView()
-        .should('be.visible')
-        .and('be.enabled');
+    avancarNoQuestionario() {
+        this.elements.botaoAvancarInscricao().click();
     }
     concluirInscricao() {
-        this.aguardarBotaoAvancarHabilitado();
         this.elements.botaoAvancarInscricao().click();//o botão de concluir tem o mesmo data-cy que o de avançar
     }
 }
