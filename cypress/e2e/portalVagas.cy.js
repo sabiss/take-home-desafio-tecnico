@@ -19,11 +19,12 @@ describe('Testes do Portal de Vagas', () => {
   it('CT-02: Deve exibir nenhuma vaga ao buscar por um termo inexistente', () => {
     PortalVagasPage.buscarPorPalavraChave('termoInexistente');
 
-    PortalVagasPage.elements.totalVagasEncontradas().should('be.visible');
+    PortalVagasPage.elements.totalVagasEncontradas()
+      .should('be.visible')
+      .and('contain.text', '0 vagas encontradas');
     PortalVagasPage.elements.tituloNenhumaVagaEncontrada().should('be.visible');
     PortalVagasPage.elements.descricaoNenhumaVagaEncontrada().should('be.visible');
     PortalVagasPage.elements.botaoVerTodasVagas().should('be.visible').and('be.enabled');
-
   })
 
   it('CT-03: Deve exibir vagas de vínculo CLT', () => {
@@ -53,6 +54,7 @@ describe('Testes do Portal de Vagas', () => {
   });
 
   it('CT-05: Deve avançar para a próxima etapa da inscrição com sucesso', () => {
+    //TODO: descobrir como passar do captcha do Cloudflare Turnstile para poder avançar na inscrição e fazer o teste DISC
     const candidato = gerarCandidato();
 
     PortalVagasPage.buscarPorPalavraChave('Estágio em Testes');
