@@ -9,6 +9,7 @@ class PortalVagasPage {
         botaoVerTodasVagas: () => cy.get('[data-cy="botao-ver-todas-vagas"]'),
         inputVinculo: () => cy.get('[data-cy="campo-vinculo-header-botao"]'),
         botaoQueroMeInscrever: () => cy.get('[data-cy="botao-vaga-inscrever"]'),
+        botaoFazerTesteDICS: () => cy.get('[data-cy="link-vaga-sucesso-botao-0"]'),
 
   };
 
@@ -39,8 +40,13 @@ class PortalVagasPage {
       .contains('inscreva-se', { matchCase: false })
       .click();
   }
+
   seInscreverNaVaga(){
     this.elements.botaoQueroMeInscrever().click();
+  }
+
+  fazerTesteDICS(){
+    this.elements.botaoFazerTesteDICS().click();
   }
 }
 
