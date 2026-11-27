@@ -1,5 +1,7 @@
 import PortalVagasPage from '../pages/PortalVagasPage';
 import FormsIncricaoVaga from '../pages/FormsIncricaoVagaPage';
+import QuestionarioPage from '../pages/QuestionarioPage';
+import TesteDISCPage from '../pages/TesteDISCPage';
 import { gerarCandidato } from '../support/factories/candidatoFactory';
 
 describe('Testes do Portal de Vagas', () => {
@@ -48,5 +50,33 @@ describe('Testes do Portal de Vagas', () => {
     cy.url().should('eq', 'https://vagas.quarkrh.com.br/esig/inscricao/73514786');
     FormsIncricaoVaga.elements.alertDeFalhaEmCamposObrigatorios().should('be.visible');
     FormsIncricaoVaga.elements.avisoEmailInvalido().should('be.visible');
+  });
+
+  it('CT-05: Deve avançar para a próxima etapa da inscrição com sucesso', () => {
+    const candidato = gerarCandidato();
+
+    PortalVagasPage.buscarPorPalavraChave('Estágio em Testes');
+    PortalVagasPage.acessarInscricaoDaVaga('Estágio em Testes');
+    PortalVagasPage.seInscreverNaVaga();
+
+    FormsIncricaoVaga.preencherFormularioInscricaoVaga(candidato);
+    FormsIncricaoVaga.anexarCurriculo(candidato.curriculo);
+    FormsIncricaoVaga.anexarFotoPerfil(candidato.foto);
+    FormsIncricaoVaga.avancarInscricao();
+    FormsIncricaoVaga.avancarInscricao();
+
+    QuestionarioPage.elements.tituloQuestionario().should('be.visible');
+
+    QuestionarioPage.preencherQuestionario();
+    QuestionarioPage.avancarNoQuestionario();
+    
+    /* Não consegui passar do captcha do Cloudflare Turnstile
+    QuestionarioPage.concluirInscricao();
+    PortalVagasPage.fazerTesteDICS();
+
+    TesteDISCPage.iniciarTesteDISC();
+    TesteDISCPage.responderTesteDISC();
+    TesteDISCPage.finalizarTesteDISC();
+    */
   });
 })
