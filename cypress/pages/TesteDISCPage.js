@@ -1,7 +1,7 @@
 class TesteDISCPage {
     elements = {
         tituloTesteDISC: () => cy.get('[data-cy="teste-disc-header-titulo-acoes"]'),
-        botaoIniciarTeste: () => cy.get('[data-cy="botao-teste-disc-iniciar-continuar"]'),
+        botaoIniciarTeste: () => cy.get('[data-cy="link-vaga-sucesso-botao-0"]'),
         botaoPrimeiraAlternativa: () => cy.get('[data-cy="teste-disc-alternativa-item-0"]'),
         botaoProximaPergunta: () => cy.get('[data-cy="botao-teste-disc-proxima"]'),
         botaoFinalizarTeste: () => cy.get('[data-cy="botao-teste-disc-finalizar"]'),
