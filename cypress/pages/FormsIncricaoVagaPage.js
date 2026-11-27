@@ -27,12 +27,12 @@ class FormsIncricaoVaga {
         this.elements.inputNome().clear().type(candidato.nome);
         this.elements.inputEmail().clear().type(candidato.email);
         this.elements.inputTelefone().clear().type(candidato.telefone);
-        this.elements.inputSexo().clear().select(candidato.sexo);
+        this.elements.inputSexo().select(candidato.sexo);
         this.elements.inputNumero().clear().type(candidato.numero);
-        this.elements.inputEscolaridade().clear().select(candidato.escolaridade);
+        this.elements.inputEscolaridade().select(candidato.escolaridade);
         this.elements.inputCurso().clear().type(candidato.curso);
         this.elements.inputLinkedin().clear().type(candidato.linkedin);
-        this.elements.inputComoChegouAteAVaga().clear().select(candidato.comoChegouAteAVaga);
+        this.elements.inputComoChegouAteAVaga().select(candidato.comoChegouAteAVaga);
         this.elements.inputPretensaoSalarial().clear().type(candidato.pretensaoSalarial);
         this.elements.inputEmail().clear().type(candidato.email);
         this.elements.inputCEP().clear().type(candidato.cep);
@@ -40,11 +40,15 @@ class FormsIncricaoVaga {
     }
 
     anexarCurriculo(nomeArquivo) {
-        this.elements.inputCurriculo().clear().selectFile(nomeArquivo, { force: true });
+        this.elements.inputCurriculo().selectFile(nomeArquivo, { force: true });
     }
 
     anexarFotoPerfil(nomeArquivo){
-        this.elements.inputFoto().clear().selectFile(nomeArquivo, { force: true });
+        this.elements.inputFoto().selectFile(nomeArquivo, { force: true });
+    }
+
+    avancarInscricao() {
+        this.elements.botaoAvancar().click();
     }
 }
 
