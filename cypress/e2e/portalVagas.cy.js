@@ -42,9 +42,8 @@ describe('Testes do Portal de Vagas', () => {
 
     FormsIncricaoVaga.preencherFormularioInscricaoVaga(candidato);
     FormsIncricaoVaga.preencherCEP(candidato.cep);
-    FormsIncricaoVaga.preencherEmail(candidato.email);
-    FormsIncricaoVaga.anexarCurriculo('curriculo.pdf');
-    FormsIncricaoVaga.anexarFotoPerfil('foto_perfil.jpg');
+    FormsIncricaoVaga.anexarCurriculo(candidato.curriculo);
+    FormsIncricaoVaga.anexarFotoPerfil(candidato.foto);
     FormsIncricaoVaga.elements.botaoAvancar().click();
 
     cy.url().should('eq', 'https://vagas.quarkrh.com.br/esig/inscricao/73514786');

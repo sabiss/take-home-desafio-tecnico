@@ -23,32 +23,29 @@ class FormsIncricaoVaga {
     }
 
     preencherFormularioInscricaoVaga(candidato) {
-        this.elements.inputNome().type(candidato.nome);
-        this.elements.inputEmail().type(candidato.email);
-        this.elements.inputTelefone().type(candidato.telefone);
-        this.elements.inputSexo().select(candidato.sexo);
-        this.elements.inputNumero().type(candidato.numero);
-        this.elements.inputEscolaridade().select(candidato.escolaridade);
-        this.elements.inputCurso().type(candidato.curso);
-        this.elements.inputLinkedin().type(candidato.linkedin);
-        this.elements.inputComoChegouAteAVaga().select(candidato.comoChegouAteAVaga);
-        this.elements.inputPretensaoSalarial().type(candidato.pretensaoSalarial);
+        this.elements.inputNome().clear().type(candidato.nome);
+        this.elements.inputEmail().clear().type(candidato.email);
+        this.elements.inputTelefone().clear().type(candidato.telefone);
+        this.elements.inputSexo().clear().select(candidato.sexo);
+        this.elements.inputNumero().clear().type(candidato.numero);
+        this.elements.inputEscolaridade().clear().select(candidato.escolaridade);
+        this.elements.inputCurso().clear().type(candidato.curso);
+        this.elements.inputLinkedin().clear().type(candidato.linkedin);
+        this.elements.inputComoChegouAteAVaga().clear().select(candidato.comoChegouAteAVaga);
+        this.elements.inputPretensaoSalarial().clear().type(candidato.pretensaoSalarial);
+        this.elements.inputEmail().clear().type(candidato.email);
     }
 
     preencherCEP(cep){
-        this.elements.inputCEP().type(cep);
-    }
-
-    preencherEmail(email){
-        this.elements.inputEmail().type(email);
+        this.elements.inputCEP().clear().type(cep);
     }
 
     anexarCurriculo(nomeArquivo) {
-        this.elements.inputCurriculo().selectFile(`cypress/fixtures/${nomeArquivo}`, { force: true });
+        this.elements.inputCurriculo().clear().selectFile(nomeArquivo, { force: true });
     }
 
     anexarFotoPerfil(nomeArquivo){
-        this.elements.inputFoto().selectFile(`cypress/fixtures/${nomeArquivo}`, { force: true });
+        this.elements.inputFoto().clear().selectFile(nomeArquivo, { force: true });
     }
 }
 
