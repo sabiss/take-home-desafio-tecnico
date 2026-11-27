@@ -65,6 +65,8 @@ O `baseUrl` configurado em `cypress.config.js` aponta para `https://vagas.quarkr
 | 2 | Digitar a palavra chave "termoInexistente" | O texto digitado deve aparecer no campo de pesquisa |
 | 3 | Clicar no botão "Buscar"| A listagem deve ser atualizada exibindo como resultado:<br>• 0 vagas encontradas<br>• O texto "Nenhuma vaga encontrada"<br>• A descrição "Não encontramos vagas que correspondam aos filtros aplicados. Tente ajustar os critérios de busca ou remover alguns filtros."<br>• Um botão "Ver todas as vagas" desbloqueado e clicável |
 
+**Cobertura automatizada atual:** verifica a visibilidade do contador, do título e da descrição de lista vazia e do botão. Não verifica que o valor do contador seja numericamente zero.
+
 ### CT-03: Deve exibir vagas de vínculo CLT
 **Objetivo:** Esse caso de teste valida o fluxo correto da busca por vagas de vínculo CLT
 
@@ -75,6 +77,8 @@ O `baseUrl` configurado em `cypress.config.js` aponta para `https://vagas.quarkr
 | 1 | Clicar no input de vínculos | deve ser exibido um dropdown com 3 opções |
 | 2 | Selecionar a opção "CLT" | Opção "CLT" deve ser selecionada |
 | 3 | Clicar no botão "Buscar"| A listagem deve ser atualizada exibindo vagas de vínculo CLT |
+
+**Cobertura automatizada atual:** seleciona CLT e verifica que o texto "CLT" aparece no container de vagas. Não verifica a quantidade de opções do filtro nem valida individualmente cada vaga exibida.
 
 ### CT-04: Deve bloquear o avanço da inscrição por causa do e-mail inválido
 **Objetivo:** Esse caso de teste valida o bloqueio do avanço na incrição do candidato que possui um e-mail inválido
@@ -90,7 +94,9 @@ O `baseUrl` configurado em `cypress.config.js` aponta para `https://vagas.quarkr
 | 5 | Clicar no botão "Quero me inscrever" | Ser redirecionado para o formulário de inscrição de url "https://vagas.quarkrh.com.br/esig/inscricao/73514786" |
 | 6 | Preencher todos os campos obrigatórios, exceto Bairro e Logradouro e usando um e-mail inválido | Os campos obrigatórios, devem possuir valor |
 | 7 | Verificar Bairro e Logradouro | Os seguintes campos devem possuir os seguintes valores: <br>• Logradouro: Avenida Nevaldo Rocha<br>• Bairro: Tirol<br>•Cidade/UF: NATAL/RN |
-| 10 | Clicar no botão "Avançar" | <br>• Deve permanecer na mesma tela com Url "https://vagas.quarkrh.com.br/esig/inscricao/73514786" <br>• Deve haver o aviso informando sobre campos obrigtórios inválidos ou não preenchidos <br>• Deve haver um aviso informando que o e-mail é inválido |
+| 8 | Clicar no botão "Avançar" | <br>• Deve permanecer na mesma tela com Url "https://vagas.quarkrh.com.br/esig/inscricao/73514786" <br>• Deve haver o aviso informando sobre campos obrigtórios inválidos ou não preenchidos <br>• Deve haver um aviso informando que o e-mail é inválido |
+
+**Cobertura automatizada atual:** verifica que a URL não mudou e que os avisos geral e de e-mail inválido aparecem. Não verifica os valores de endereço preenchidos pelo CEP.
 
 ### CT-05: Deve concluir uma candidatura completa
 
@@ -134,9 +140,11 @@ O `baseUrl` configurado em `cypress.config.js` aponta para `https://vagas.quarkr
 | 6 | Preencher todos os campos, usando um currículo maior que 5MB| Todos os campos devem possuir valor |
 | 7 | Clicar no botão "Avançar" | <br>• Deve permanecer na mesma tela com Url "https://vagas.quarkrh.com.br/esig/inscricao/73514786" <br>• Deve haver o aviso informando sobre que o arquivo do currículo deve ter no máximo 5MB |
 
+**Cobertura automatizada atual:** anexa `cypress/fixtures/curriculo_mais_5mb.pdf`, tenta avançar e verifica que o elemento de erro do currículo está visível. Não verifica o texto exato do aviso.
+
 ## Organização da automação
 
-- `cypress/e2e/portalVagas.cy.js`: cenários E2E CT-01 a CT-05.
+- `cypress/e2e/portalVagas.cy.js`: cenários E2E CT-01 a CT-05 e CT-BÔNUS.
 - `cypress/pages/`: Page Objects para busca, inscrição, questionário e teste DISC.
 - `cypress/support/factories/candidatoFactory.js`: geração de dados fictícios de candidato com Faker.
 - `cypress/fixtures/`: arquivos de teste usados como currículo e foto.
@@ -146,6 +154,7 @@ Os Page Objects encapsulam seletores e ações das páginas. A factory centraliz
 ## O que foi feito
 
 - Estruturação da suíte Cypress para busca de vagas, filtros e validação de e-mail.
+- Inclusão do cenário bônus de bloqueio de currículo acima de 5 MB.
 - Organização das interações com a aplicação em Page Objects Model.
 - Geração de dados de candidato com Faker e uso de arquivos de fixture.
 - Especificação do fluxo de inscrição e DISC no CT-05. A automação desse fluxo ainda está pendente por causa do Turnstile e da necessidade de respostas de API compatíveis com uma inscrição válida.
